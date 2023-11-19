@@ -6,6 +6,7 @@
 
 # Building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
+OF_SCREEN_H=2400
 
 # Architecture
 TARGET_ARCH := arm64
