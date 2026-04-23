@@ -10,7 +10,7 @@ on:
       DEVICE_TREE_BRANCH:
         description: "Device tree branch"
         required: true
-        default: "fox_14.1"
+        default: "fox_16.0"
       DEVICE_PATH:
         description: "Device path device/"
         required: true
