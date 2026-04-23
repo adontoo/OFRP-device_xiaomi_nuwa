@@ -20,16 +20,6 @@
         </interface>
     </hal>
     <hal format="hidl" optional="false">
-        <name>android.hidl.manager</name>
-        <version>1.0</version>
-        <version>1.1</version>
-        <version>1.2</version>
-        <interface>
-            <name>IServiceManager</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="false">
         <name>android.hidl.memory</name>
         <version>1.0</version>
         <interface>

@@ -23,6 +23,12 @@
         <transport>hwbinder</transport>
         <fqname>@1.0::ISensorManager/default</fqname>
     </hal>
+    <hal format="hidl">
+        <name>android.hidl.manager</name>
+        <transport>hwbinder</transport>
+        <version>1.2</version>
+        <fqname>@1.2::IServiceManager/default</fqname>
+    </hal>
     <hal format="hidl" max-level="8">
         <name>android.hidl.memory</name>
         <transport arch="32+64">passthrough</transport>

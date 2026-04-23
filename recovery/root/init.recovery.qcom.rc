@@ -26,6 +26,7 @@
 #
 
 import /init.recovery.wifi.rc
+
 on early-fs
     write /proc/sys/walt/sched_lib_name "recovery,magiskboot,Updater,updater,update_engine_sideload"
     write /proc/sys/walt/sched_lib_mask_force 255
@@ -59,16 +60,16 @@ on property:twrp.modules.loaded=true
     # Load ADSP firmware for PMIC
     wait /sys/kernel/boot_adsp/boot
     write /sys/kernel/boot_adsp/boot 1
-    wait /sys/kernel/boot_adsp/ssr
-    write /sys/kernel/boot_adsp/ssr 1
     wait /sys/class/power_supply/battery
-    start vendor.health-default
     symlink /firmware /vendor/firmware_mnt
-    start vendor.gatekeeper_default
-    start vendor.keymint-qti
+    start vendor.qseecomd
     start vendor.health-default
     start vibratorfeature-hal-service
     setprop twrp.variant.files_copied 1
 
 on property:servicemanager.ready=true
     setprop sys.boot_completed 1
+
+on property:vendor.sys.listeners.registered=true
+    start vendor.gatekeeper_default
+    start vendor.keymint-qti
