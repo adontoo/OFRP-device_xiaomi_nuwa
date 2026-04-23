@@ -26,12 +26,13 @@ Works:
 - [X] ADB
 - [X] Decryption
 - [X] Display
-- [X] Fasbootd
+- [X] Fastbootd
 - [X] Flashing
 - [X] MTP
 - [X] Sideload
 - [X] USB OTG
 - [X] Vibrator
+- [X] WLAN
 
 ## To use it:
 

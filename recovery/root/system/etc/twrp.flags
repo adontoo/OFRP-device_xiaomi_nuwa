@@ -4,6 +4,11 @@
 
 # mount point          fstype  device                                        device2              flags
 
+# Logical partitions
+/mi_ext                ext4    mi_ext                                                             flags=display="Mi_EXT"
+/system_ext            ext4    system_ext                                                         flags=display="System_EXT"
+/system_dlkm           ext4    system_dlkm                                                        flags=display="System_DLKM"
+/vendor_dlkm           ext4    vendor_dlkm                                                        flags=display="Vendor_DLKM"
 /metadata              f2fs    /dev/block/bootdevice/by-name/metadata                             flags=display="Metadata";backup=1;wrappedkey
 /data                  f2fs    /dev/block/bootdevice/by-name/userdata                             flags=fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,metadata_encryption=aes-256-xts:wrappedkey_v0
 /cache                 ext4    /dev/block/bootdevice/by-name/rescue                               flags=backup=1;wipeingui;wipeduringfactoryreset

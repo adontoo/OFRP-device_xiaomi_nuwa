@@ -2,7 +2,7 @@
     Input:
         compatibility_matrix.xml
 -->
-<compatibility-matrix version="4.0" type="device">
+<compatibility-matrix version="5.0" type="device">
     <hal format="hidl" optional="false">
         <name>android.frameworks.sensorservice</name>
         <version>1.0</version>
@@ -22,6 +22,8 @@
     <hal format="hidl" optional="false">
         <name>android.hidl.manager</name>
         <version>1.0</version>
+        <version>1.1</version>
+        <version>1.2</version>
         <interface>
             <name>IServiceManager</name>
             <instance>default</instance>

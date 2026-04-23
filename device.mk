@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2023 The Android Open Source Project
+# Copyright (C) 2026 The Android Open Source Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -22,12 +22,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Configure twrp common.mk
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-PRODUCT_PACKAGES += \
-    bootctrl.xiaomi_sm8550.recovery \
-    android.hardware.boot@1.2-impl-qti.recovery
-
 # SHIPPING API
-PRODUCT_SHIPPING_API_LEVEL := 31
+PRODUCT_SHIPPING_API_LEVEL := 33
 
 # VNDK API
 PRODUCT_TARGET_VNDK_VERSION := 33
@@ -35,8 +31,13 @@ PRODUCT_TARGET_VNDK_VERSION := 33
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
+# Enable Fuse Passthrough
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
 
-TWRP_REQUIRED_MODULES += \
-    miui_prebuilt
+# Otacert
+PRODUCT_EXTRA_RECOVERY_KEYS += \
+    $(DEVICE_PATH)/security/releasekey
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+	$(DEVICE_PATH)

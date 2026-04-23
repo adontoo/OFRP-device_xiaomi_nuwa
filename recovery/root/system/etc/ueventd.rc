@@ -1,7 +1,10 @@
 import /vendor/etc/ueventd.rc
 import /odm/etc/ueventd.rc
 
-firmware_directories /etc/firmware/ /odm/firmware/ /vendor/firmware/ /firmware/image/
+# MIUI MOD: WIFI_VendorApex
+# firmware_directories /etc/firmware/ /odm/firmware/ /vendor/firmware/ /firmware/image/
+firmware_directories /apex/com.xiaomi.wifi/etc/ /etc/firmware/ /odm/firmware/ /vendor/firmware/ /firmware/image/
+# END WIFI_VendorApex
 uevent_socket_rcvbuf_size 16M
 
 subsystem graphics
@@ -11,6 +14,12 @@ subsystem graphics
 subsystem drm
     devname uevent_devpath
     dirname /dev/dri
+
+# MIUI ADD: Adapt_MIUIAdaptFrame
+subsystem mi_display
+    devname uevent_devpath
+    dirname /dev/mi_display
+# END Adapt_MIUIAdaptFrame
 
 subsystem input
     devname uevent_devpath
@@ -23,6 +32,11 @@ subsystem sound
 subsystem dma_heap
    devname uevent_devpath
    dirname /dev/dma_heap
+
+subsystem vfio
+    devname uevent_devpath
+    dirname /dev/vfio
+
 # ueventd can only set permissions on device nodes and their associated
 # sysfs attributes, not on arbitrary paths.
 #
@@ -37,10 +51,13 @@ subsystem dma_heap
 /dev/tty                  0666   root       root
 /dev/random               0666   root       root
 /dev/urandom              0666   root       root
+# Aside from kernel threads, only prng_seeder needs access to HW RNG
+/dev/hw_random            0400   prng_seeder prng_seeder
 /dev/ashmem*              0666   root       root
 /dev/binder               0666   root       root
 /dev/hwbinder             0666   root       root
 /dev/vndbinder            0666   root       root
+/dev/vfio/*               0666   root       root
 
 /dev/pmsg0                0222   root       log
 /dev/dma_heap/system      0444   system     system
@@ -50,11 +67,18 @@ subsystem dma_heap
 # kms driver for drm based gpu
 /dev/dri/*                0666   root       graphics
 
+#MIUI ADD: Audio_MIUIAudioFrame
 # mius iio devices
 /dev/iio:device*                                        0660   system     system
 /sys/bus/iio/devices/iio:device* buffer/enable                  0600 system system
 /sys/bus/iio/devices/iio:device* scan_elements/in_proximity_en  0600 system system
 /sys/bus/iio/devices/iio:device* scan_elements/in_timestamp_en  0600 system system
+#END Audio_MIUIAudioFrame
+
+# MIUI ADD: Adapt_MIUIAdaptFrame
+# mi display feature
+/dev/mi_display/*         0666   root       graphics
+# END Adapt_MIUIAdaptFrame
 
 # these should not be world writable
 /dev/uhid                 0660   uhid       uhid
@@ -69,12 +93,13 @@ subsystem dma_heap
 /dev/mtp_usb              0660   root       mtp
 /dev/usb_accessory        0660   root       usb
 /dev/tun                  0660   system     vpn
+/dev/hidraw*              0660   system     system
 
 # CDMA radio interface MUX
 /dev/ppp                  0660   radio      vpn
 
-/dev/kvm                  0600   system     system
-/dev/vhost-vsock          0600   system	    system
+/dev/kvm                  0666   root       root
+/dev/vhost-vsock          0666   root       root
 
 # sysfs properties
 /sys/devices/platform/trusty.*      trusty_version        0440  root   log
