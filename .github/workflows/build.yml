@@ -1,4 +1,4 @@
-name: OFRP 14.1 Builder
+name: OFRP 16.0 Builder
 
 on:
   workflow_dispatch:
