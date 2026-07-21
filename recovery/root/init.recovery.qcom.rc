@@ -45,6 +45,9 @@ on fs
     mount none /tmp/persist /mnt/vendor/persist bind rec
     install_keyring
 
+on post-fs
+    start variant-script
+
 on init
     start vendor.boot-qti
 
@@ -65,7 +68,6 @@ on property:twrp.modules.loaded=true
     start vendor.qseecomd
     start vendor.health-default
     start vibratorfeature-hal-service
-    setprop twrp.variant.files_copied 1
 
 on property:servicemanager.ready=true
     setprop sys.boot_completed 1

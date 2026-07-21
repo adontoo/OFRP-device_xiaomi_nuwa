@@ -1,6 +1,7 @@
 # ADB
 ro.adb.secure=0
 ro.boot.dynamic_partitions=true
+service.adb.tcp.port=5555
 
 # Gatekeeper
 vendor.gatekeeper.disable_spu=true

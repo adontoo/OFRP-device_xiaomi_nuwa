@@ -64,27 +64,23 @@ export FOX_ENABLE_SUKISU_SUPPORT=1
 export FOX_VARIANT="Xiaomi_nuwa"
 export FOX_MAINTAINER_PATCH_VERSION=$(date +%y%m%d)
 export OF_MAINTAINER="Adontoo"
-export OF_MAGISK="/tmp/misc/Magisk-v29.0.zip"
-export FOX_USE_SPECIFIC_MAGISK_ZIP=/tmp/misc/Magisk-v29.0.zip
+export OF_MAGISK="/tmp/misc/Magisk-v30.7.zip"
+export FOX_USE_SPECIFIC_MAGISK_ZIP=/tmp/misc/Magisk-v30.7.zip
 export OF_SCREEN_H=2400
-export OF_STATUS_H=111
+export OF_STATUS_H=116
 export OF_STATUS_INDENT_LEFT=30
 export OF_STATUS_INDENT_RIGHT=30
 export OF_HIDE_NOTCH=1
-#export OF_ALLOW_DISABLE_NAVBAR=0
 export OF_SUPPORT_VBMETA_AVB2_PATCHING=1
 export OF_ENABLE_FRP_ADDON=1
 export OF_ENABLE_WLAN=1
+export FOX_ADD_API_V36_PREBUILTS=1
 
 F=$(find "device" -maxdepth 2 -name "nuwa")
-# Change splash to black
-\cp -fp bootable/recovery/gui/theme/portrait_hdpi/splash.xml "$F"/recovery/root/twres/splash.xml
-sed -i 's/value="#D34E38"/value="#000000"/g' "$F"/recovery/root/twres/splash.xml
-sed -i 's/value="#FF8038"/value="#000000"/g' "$F"/recovery/root/twres/splash.xml
 
-if [ -f "/home/adontoo/android/Magisk-v29.0.zip" ]; then
+if [ -f "/home/adontoo/android/Magisk-v30.7.zip" ]; then
         mkdir -p /tmp/misc/
-        cp /home/adontoo/android/Magisk-v29.0.zip /tmp/misc/
+        cp /home/adontoo/android/Magisk-v30.7.zip /tmp/misc/
         echo -e "${BLUE}-- Successfully Copy the Magisk.zip File to \"$OF_MAGISK\" ...${NC}"
 fi
 
@@ -99,7 +95,7 @@ if [ -n "$FOX_USE_SPECIFIC_MAGISK_ZIP" ]; then
         echo -e "${RED}-- File \"$OF_MAGISK\" not found  ...${NC}"
         echo -e "${ORANGE}-- Downloading...${NC}"
         mkdir -p /tmp/misc
-        wget -O /tmp/misc/Magisk-v29.0.zip https://github.com/topjohnwu/Magisk/releases/download/v29.0/Magisk-v29.0.apk
+        wget -O /tmp/misc/Magisk-v30.7.zip https://github.com/topjohnwu/Magisk/releases/download/v30.7/Magisk-v30.7.apk
         echo -e "${BLUE}-- Successfully Downloaded the Magisk.zip File \"$OF_MAGISK\" ...${NC}"
         echo -e "${PURPLE}-- Using A Custom Magisk.zip from the Downloaded file \"$OF_MAGISK\" ...${NC}"
         echo -e "${GREEN}-- Done!"

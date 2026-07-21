@@ -171,4 +171,4 @@ TW_LOAD_PREBUILT_MODULES_AT_FIRST := true
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone35/temp" # CPU-0-0-0
 TW_BACKUP_EXCLUSIONS := /data/fonts
 TW_DEVICE_VERSION := Xiaomi_13_Pro
-#TW_NO_NETWORK := true
+TW_NO_NETWORK := false
